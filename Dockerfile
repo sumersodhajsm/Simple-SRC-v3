@@ -19,7 +19,7 @@ WORKDIR /app
 COPY . .
 
 # Expose port 5000 (since Quart runs on port 5000 by default)
-EXPOSE 5000
+EXPOSE 8000
 
 # Start the Quart application
-CMD flask run -h 0.0.0.0 -p 5000 & python3 main.py
+CMD flask run -h 0.0.0.0 -p 8000 & python3 main.py
