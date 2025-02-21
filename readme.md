@@ -1,4 +1,4 @@
-# Pyrogram Batch Bot
+# Simple SRC v3
 
 A Telegram bot that helps batch process messages from private and public channels.
 
