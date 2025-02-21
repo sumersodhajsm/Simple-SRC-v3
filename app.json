@@ -1,0 +1,28 @@
+{
+  "name": "Simple SRC v3",
+  "description": "A Simplest Pyrogram bot for fetching and saving restricted messages.",
+  "repository": "https://github.com/devgaganin", 
+  "env": {
+    "API_ID": {
+      "description": "Your Telegram API ID",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Your Telegram API Hash",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Your Telegram Bot Token",
+      "required": true
+    },
+    "SESSION": {
+      "description": "Your userbot session string",
+      "required": true
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
