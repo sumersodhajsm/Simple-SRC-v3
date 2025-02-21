@@ -32,7 +32,10 @@ A Telegram bot that helps batch process messages from private and public channel
 ```sh
 python main.py
 ```
-
+## Deployments (other than VPS)
+- [Deploy on Heroku](https://heroku.com/deploy)
+- you can connect and deploy on any PaaS (platform as service) provider like koyeb, render, northflank, railway etc via dockerfile
+- 
 ## Commands
 - `/batch` – Start batch processing messages.
 - `/cancel` – Cancel an ongoing operation.
