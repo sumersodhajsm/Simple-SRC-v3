@@ -38,7 +38,8 @@ async def V(C, U, m, d, l, u):
                     del W[u]
                     return "Failed."
                 await C.edit_message_text(d, P.id, "Uploading...")
-                if m.video: await C.send_video(d, video=F, caption=m.caption, progress=K, progress_args=(C, d, P.id))
+                th = "v3.jpg"
+                if m.video: await C.send_video(d, video=F, caption=m.caption, thumb=th, progress=K, progress_args=(C, d, P.id))
                 elif m.photo: await C.send_photo(d, photo=F, caption=m.caption, progress=K, progress_args=(C, d, P.id))
                 elif m.document: await C.send_document(d, document=F, caption=m.caption, progress=K, progress_args=(C, d, P.id))
                 O.remove(F)
