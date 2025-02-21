@@ -1,8 +1,7 @@
 import os as O, re as R
 from pyrogram import Client as C, filters as F
 from pyrogram.types import Message as M
-
-A, H, T, S = O.getenv("API_ID"), O.getenv("API_HASH"), O.getenv("BOT_TOKEN"), O.getenv("SESSION")
+from config import API_ID as A, API_HASH as H, BOT_TOKEN as T, SESSION as S
 X, Y = C("X", api_id=A, api_hash=H, bot_token=T), C("Y", api_id=A, api_hash=H, session_string=S)
 Z, W = {}, {}
 
