@@ -69,7 +69,7 @@ async def N(C, m: M):
     else:
         await m.reply_text("No active task.")
 
-@X.on_message(F.text & ~F.command)
+@X.on_message(F.text & ~F.command(["start", "batch", "cancel"]))
 async def H(C, m: M):
     U = m.from_user.id
     if U not in Z:
