@@ -121,8 +121,7 @@ async def H(C, m: M):
         
         I, S, N, link_type = Z[U]["cid"], Z[U]["sid"], Z[U]["num"], Z[U]["lt"]
         R = 0
-        await m.reply_text("Processing...")
-        pt = m.reply_text("Trying hard 🐥")
+        pt = await m.reply_text("Trying hard 🐥...")
         
         for i in range(N):
             M = S + i
