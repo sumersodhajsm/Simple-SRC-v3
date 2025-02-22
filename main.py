@@ -54,6 +54,10 @@ async def V(C, U, m, d, l, u):
     except Exception as e:
         return f"Error: {e}"
 
+@X.on_message(F.command("start"))
+async def sex(C, m: M):
+    await m.reply_text("Welcom to bot use use /batch to start magic")
+
 @X.on_message(F.command("batch"))
 async def B(C, m: M):
     U = m.from_user.id
