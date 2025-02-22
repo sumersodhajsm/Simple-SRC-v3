@@ -7,19 +7,16 @@ X, Y = C("X", api_id=A, api_hash=H, bot_token=T), C("Y", api_id=A, api_hash=H, s
 Z, W = {}, {}
 
 def E(L):
-    P = R.match(r"https://t\.me/([^/]+)/(\d+)", L)
     Q = R.match(r"https://t\.me/c/(\d+)/(\d+)", L)
+    P = R.match(r"https://t\.me/([^/]+)/(\d+)", L)
     
     if Q:
-        print(f"Detected Public Link: {P.group(1)} - Message ID: {P.group(2)}")
-        return P.group(1), int(P.group(2)), "public"
-    elif P:
-        print(f"Detected Private Link: -100{Q.group(1)} - Message ID: {Q.group(2)}")
         return f"-100{Q.group(1)}", int(Q.group(2)), "private"
+    elif P:
+        return P.group(1), int(P.group(2)), "public"
     else:
-        print(f"Invalid Link: {L}")
         return None, None, None
-
+        
 async def J(C, U, I, D, link_type):
     try:
         print(f"Fetching message from {I}, Message ID: {D}, Type: {link_type}")
