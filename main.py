@@ -10,10 +10,10 @@ def E(L):
     P = R.match(r"https://t\.me/([^/]+)/(\d+)", L)
     Q = R.match(r"https://t\.me/c/(\d+)/(\d+)", L)
     
-    if P:
+    if Q:
         print(f"Detected Public Link: {P.group(1)} - Message ID: {P.group(2)}")
         return P.group(1), int(P.group(2)), "public"
-    elif Q:
+    elif P:
         print(f"Detected Private Link: -100{Q.group(1)} - Message ID: {Q.group(2)}")
         return f"-100{Q.group(1)}", int(Q.group(2)), "private"
     else:
