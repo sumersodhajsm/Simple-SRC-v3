@@ -155,4 +155,6 @@ async def H(C, m: M):
         
         await m.reply_text(f"Batch Completed ✅")
         del Z[U]
+
+print("Bot started successfully!!")
 X.run()
