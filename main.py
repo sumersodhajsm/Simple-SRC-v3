@@ -5,6 +5,12 @@ from config import API_ID as A, API_HASH as H, BOT_TOKEN as T, SESSION as S
 
 X, Y = C("X", api_id=A, api_hash=H, bot_token=T), C("Y", api_id=A, api_hash=H, session_string=S)
 Z, W = {}, {}
+try:
+    Y.start()
+    print("userbot started")
+except Exception:
+    print("check your session")
+    pass
 
 def E(L):
     Q = R.match(r"https://t\.me/c/(\d+)/(\d+)", L)
@@ -131,7 +137,6 @@ async def H(C, m: M):
         await m.reply_text(f"Completed. {R}/{N} done.")
         del Z[U]
 
-if __name__ == "__main__":
-    Y.start()
-    X.run()
+
+X.run()
                 
