@@ -123,13 +123,14 @@ async def H(C, m: M):
         I, S, N, link_type = Z[U]["cid"], Z[U]["sid"], Z[U]["num"], Z[U]["lt"]
         R = 0
         await m.reply_text("Processing...")
+        pt = m.reply_text("Trying hard 🐥")
         
         for i in range(N):
             M = S + i
             msg = await J(C, Y, I, M, link_type)
             if msg:
                 res = await V(C, Y, msg, D, link_type, U)
-                await m.reply_text(f"{i+1}/{N}: {res}")
+                await pt.edit(f"{i+1}/{N}: {res}")
                 if "Done" in res: R += 1
             else:
                 await m.reply_text(f"{M} not found.")
