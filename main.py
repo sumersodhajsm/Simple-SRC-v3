@@ -75,6 +75,7 @@ async def V(C, U, m, d, link_type, u):
                 if m.video: await C.send_video(d, video=F, caption=m.caption.markdown, thumb=th, progress=K, progress_args=(C, d, P.id, st))
                 elif m.video_note: await C.send_video_note(d, video_note=F, progress=K, progress_args=(C, d, P.id, st))
                 elif m.voice: await C.send_voice(d, F, progress=K, progress_args=(C, d, P.id, st))
+                elif m.sticker: await C.send_sticker(d, m.sticker.file_id)
                 elif m.audio: await C.send_audio(d, audio=F, caption=m.caption.markdown, thumb=th, progress=K, progress_args=(C, d, P.id, st))
                 elif m.photo: await C.send_photo(d, photo=F, caption=m.caption.markdown, progress=K, progress_args=(C, d, P.id, st))
                 elif m.document: await C.send_document(d, document=F, caption=m.caption.markdown, progress=K, progress_args=(C, d, P.id, st))
@@ -87,8 +88,6 @@ async def V(C, U, m, d, link_type, u):
                 return "Copied."
         elif m.text:
             await (C.send_message(d, text=m.text.markdown) if link_type == "private" else m.copy(chat_id=d))
-            return "Sent."
-        elif m.sticker: await C.send_sticker(d, m.sticker.file_id)
             return "Sent."
     except Exception as e:
         return f"Error: {e}"
