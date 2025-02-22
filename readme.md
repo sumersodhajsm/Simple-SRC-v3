@@ -1,6 +1,6 @@
 # Simple SRC v3
 
-A Telegram bot that helps batch process messages from private and public channels.
+A simplest Telegram Save Restricted bot repo (just 100 lines) that helps batch process messages from private and public channels.
 
 ## Features
 - Extracts messages from channels and forwards them.
