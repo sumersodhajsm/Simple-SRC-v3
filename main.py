@@ -135,7 +135,7 @@ async def H(C, m: M):
             else:
                 await m.reply_text(f"{M} not found.")
         
-        await m.reply_text(f"Completed. {R}/{N} done.")
+        await m.reply_text(f"Batch Completed ✅")
         del Z[U]
 
 
