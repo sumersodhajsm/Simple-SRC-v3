@@ -1,6 +1,7 @@
 import os as O, re as R
 from pyrogram import Client as C, filters as F
 from pyrogram.types import Message as M
+import time
 from config import API_ID as A, API_HASH as H, BOT_TOKEN as T, SESSION as S
 
 X, Y = C("X", api_id=A, api_hash=H, bot_token=T), C("Y", api_id=A, api_hash=H, session_string=S)
@@ -11,6 +12,8 @@ try:
 except Exception:
     print("check your session")
     pass
+    
+progress_cache = {}
 
 def E(L):
     Q = R.match(r"https://t\.me/c/(\d+)/(\d+)", L)
@@ -31,17 +34,31 @@ async def J(C, U, I, D, link_type):
         print(f"Error fetching message: {e}")
         return None
 
-async def K(c, t, C, h, m):
-    p = (c / t) * 100
-    await C.edit_message_text(h, m, f"Progress: {p:.2f}%")
 
+async def K(c, t, C, h, m, start_time):
+    global progress_cache
+    p = (c / t) * 100
+    step = int(p // 10) * 10
+
+    if m not in progress_cache or progress_cache[m] != step or p >= 100:
+        progress_cache[m] = step
+        bar = "█" * (int(p / 10)) + "░" * (10 - int(p / 10))
+        speed = (c / (time.time() - start_time)) / (1024 * 1024) if time.time() > start_time else 0
+        eta = time.strftime("%M:%S", time.gmtime((t - c) / (speed * 1024 * 1024))) if speed > 0 else "00:00"
+
+        await C.edit_message_text(h, m, f"📊 **Progress**: {p:.2f}%\n[{bar}]\n🚀 **Speed**: {speed:.2f} MB/s\n⏳ **ETA**: {eta}")
+
+        if p >= 100:
+            progress_cache.pop(m, None)
+            
 async def V(C, U, m, d, link_type, u):
     try:
         if m.media:
+            st = time.time()
             if link_type == "private":
                 P = await C.send_message(d, "Downloading...")
                 W[u] = {"cancel": False, "progress": P.id}
-                F = await U.download_media(m, progress=K, progress_args=(C, d, P.id))
+                F = await U.download_media(m, progress=K, progress_args=(C, d, P.id, st))
                 
                 if W.get(u, {}).get("cancel"):
                     await C.edit_message_text(d, P.id, "Canceled.")
@@ -56,9 +73,9 @@ async def V(C, U, m, d, link_type, u):
                 
                 await C.edit_message_text(d, P.id, "Uploading...")
                 th = "v3.jpg"
-                if m.video: await C.send_video(d, video=F, caption=m.caption, thumb=th, progress=K, progress_args=(C, d, P.id))
-                elif m.photo: await C.send_photo(d, photo=F, caption=m.caption, progress=K, progress_args=(C, d, P.id))
-                elif m.document: await C.send_document(d, document=F, caption=m.caption, progress=K, progress_args=(C, d, P.id))
+                if m.video: await C.send_video(d, video=F, caption=m.caption, thumb=th, progress=K, progress_args=(C, d, P.id, st))
+                elif m.photo: await C.send_photo(d, photo=F, caption=m.caption, progress=K, progress_args=(C, d, P.id, st))
+                elif m.document: await C.send_document(d, document=F, caption=m.caption, progress=K, progress_args=(C, d, P.id, st))
                 
                 O.remove(F)
                 await C.delete_messages(d, P.id)
