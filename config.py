@@ -1,7 +1,7 @@
 from os import getenv
 
 
-API_ID = int(getenv("API_ID", ""))
-API_HASH = getenv("API_HASH", "")
+API_ID = int(getenv("API_ID", "28662166"))
+API_HASH = getenv("API_HASH", "d03270e7d1eaefee0675a829acd7271c")
 BOT_TOKEN = getenv("BOT_TOKEN", "")
-SESSION = getenv("SESSION", "")
+SESSION = getenv("SESSION", "BQG1WZYAt396t6Zgov_DBgI1xUcp8hGXqByeErJ_17u_cVhNa8Cbdk_5dXQ2b2WJll7oFoilLPvWFluO2uDHzL03c3ihlzxYgKa6fuOYkDmEu6lTDZL_ued6b-dY4ynYqWuuGOFJP6g7iRgncnUTv9pt6d7MPOX_A7UXXGQIHf2GGwNnCywTYfVsVu5uNsrPBnMTN6dro8DbAggBX-d1vZ3sk9j-EcWQDRpQ0G9h3p7hNBQQweWvyXyaxldtRgo1MvuPyJNXj32XwUp31y0taZ95FOfdjeG973OmZPagsHcEU3KbMZA0a14ElVD6EcSyn3amnt955Jii_LSTWVbRnNLE2ipkRQAAAAHDfhLPAA")
