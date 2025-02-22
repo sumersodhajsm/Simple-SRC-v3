@@ -42,12 +42,11 @@ async def K(c, t, C, h, m, start_time):
 
     if m not in progress_cache or progress_cache[m] != step or p >= 100:
         progress_cache[m] = step
-        bar = "█" * (int(p / 10)) + "░" * (10 - int(p / 10))
+        bar = "🟢" * (int(p / 10)) + "🔴" * (10 - int(p / 10))
         speed = (c / (time.time() - start_time)) / (1024 * 1024) if time.time() > start_time else 0
         eta = time.strftime("%M:%S", time.gmtime((t - c) / (speed * 1024 * 1024))) if speed > 0 else "00:00"
 
-        await C.edit_message_text(h, m, f"📊 **Progress**: {p:.2f}%\n[{bar}]\n🚀 **Speed**: {speed:.2f} MB/s\n⏳ **ETA**: {eta}")
-
+        await C.edit_message_text(h, m, f"___**Processing...**__\n\n{bar}\n\n📊 **__Completed__**: {p:.2f}%\n🚀 **__Speed**__: {speed:.2f} MB/s\n⏳ **__ETA**__: {eta}\n\n**__Powered by Team SPY__**")
         if p >= 100:
             progress_cache.pop(m, None)
             
