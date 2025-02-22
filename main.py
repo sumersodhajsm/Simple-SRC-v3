@@ -98,7 +98,6 @@ async def H(C, m: M):
     if U not in Z:
         return
     S = Z[U].get("step")
-    
     if S == "start":
         L = m.text
         I, D, link_type = E(L)
@@ -137,7 +136,4 @@ async def H(C, m: M):
         
         await m.reply_text(f"Batch Completed ✅")
         del Z[U]
-
-
 X.run()
-                
