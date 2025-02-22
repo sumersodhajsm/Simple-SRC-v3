@@ -71,7 +71,9 @@ async def V(C, U, m, d, link_type, u):
                 
                 await C.edit_message_text(d, P.id, "Uploading...")
                 th = "v3.jpg"
-                if m.video: await C.send_video(d, video=F, caption=m.caption.markdown, thumb=th, progress=K, progress_args=(C, d, P.id, st))
+                if m.video:
+                    width, height, duration = m.video.width, m.video.height, m.video.duration
+                    await C.send_video(d, video=F, caption=m.caption.markdown, thumb=th, width=width, height=height, duration=duration, progress=K, progress_args=(C, d, P.id, st))
                 elif m.video_note: await C.send_video_note(d, video_note=F, progress=K, progress_args=(C, d, P.id, st))
                 elif m.voice: await C.send_voice(d, F, progress=K, progress_args=(C, d, P.id, st))
                 elif m.sticker: await C.send_sticker(d, m.sticker.file_id)
