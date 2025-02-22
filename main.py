@@ -2,12 +2,20 @@ import os as O, re as R
 from pyrogram import Client as C, filters as F
 from pyrogram.types import Message as M
 from config import API_ID as A, API_HASH as H, BOT_TOKEN as T, SESSION as S
+
 X, Y = C("X", api_id=A, api_hash=H, bot_token=T), C("Y", api_id=A, api_hash=H, session_string=S)
 Z, W = {}, {}
 
 def E(L):
-    P, Q = R.match(r"https://t\.me/([^/]+)/(\d+)", L), R.match(r"https://t\.me/c/(\d+)/(\d+)", L)
-    return (P.group(1), int(P.group(2)), "public") if P else (f"-100{Q.group(1)}", int(Q.group(2)), "private") if Q else (None, None, None)
+    P = R.match(r"https://t\.me/([^/]+)/(\d+)", L)
+    Q = R.match(r"https://t\.me/c/(\d+)/(\d+)", L)
+    
+    if P:
+        return P.group(1), int(P.group(2)), "public"
+    elif Q:
+        return f"-100{Q.group(1)}", int(Q.group(2)), "private"
+    else:
+        return None, None, None
 
 async def J(C, U, I, D, L):
     try:
@@ -56,7 +64,7 @@ async def V(C, U, m, d, l, u):
 
 @X.on_message(F.command("start"))
 async def sex(C, m: M):
-    await m.reply_text("Welcom to bot use use /batch to start magic")
+    await m.reply_text("Welcome to bot. Use /batch to start magic.")
 
 @X.on_message(F.command("batch"))
 async def B(C, m: M):
@@ -83,17 +91,17 @@ async def H(C, m: M):
         L = m.text
         I, D, L = E(L)
         if not I or not D:
-            await m.reply_text("Invalid.")
+            await m.reply_text("Invalid link. Please check the format.")
             del Z[U]
             return
         Z[U].update({"step": "count", "cid": I, "sid": D, "lt": L})
-        await m.reply_text("How many?")
+        await m.reply_text("How many messages?")
     elif S == "count":
         if not m.text.isdigit():
-            await m.reply_text("Enter a number.")
+            await m.reply_text("Enter a valid number.")
             return
         Z[U].update({"step": "dest", "num": int(m.text)})
-        await m.reply_text("Send destination ID.")
+        await m.reply_text("Send destination chat ID.")
     elif S == "dest":
         D = m.text
         Z[U].update({"step": "process", "did": D})
