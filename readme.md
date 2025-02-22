@@ -37,6 +37,7 @@ python main.py
 - you can connect and deploy on any PaaS (platform as service) provider like koyeb, render, northflank, railway etc via dockerfile
 
 ## Commands
+- `start` - check if bot alive
 - `/batch` – Start batch processing messages.
 - `/cancel` – Cancel an ongoing operation.
 
